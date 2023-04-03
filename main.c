@@ -4,6 +4,7 @@ FILE *file;
 
 int prompt();
 void crfile();
+void crline();
 void edit();
 void read();
 
@@ -72,5 +73,15 @@ void read(){
 	fclose(file);
 }
 void edit(){
+	char fname[31];
 
+	printf("\033[1;32m");
+	printf("What file would you like to edit?");
+	printf("\033[1;36m");
+	printf("input>>> ");
+	printf("\033[1;0m");
+
+	scanf("%d", &fname);
+	gets(fname);
 }
+
