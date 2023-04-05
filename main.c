@@ -35,7 +35,7 @@ int prompt(){
 	printf("input>>> ");
 	printf("\033[1;0m");
 
-	scanf("%d", &in);
+	scanf("%d	", &in);
 	return in;
 }
 
