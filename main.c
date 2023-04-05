@@ -1,10 +1,10 @@
 #include<stdio.h>
+#include<string.h>
 
 FILE *file;
 
 int prompt();
 void crfile();
-void crline();
 void edit();
 void read();
 
@@ -74,14 +74,38 @@ void read(){
 }
 void edit(){
 	char fname[31];
+	char content[250];
+	int i = 0;
 
 	printf("\033[1;32m");
-	printf("What file would you like to edit?");
+	printf("What file would you like to edit?\n");
 	printf("\033[1;36m");
 	printf("input>>> ");
 	printf("\033[1;0m");
 
 	scanf("%d", &fname);
 	gets(fname);
-}
+	
+	file = fopen(fname, "a");
 
+	printf("******************** Edit ********************\n");
+	
+	while(1){
+		printf("%d", i++);
+		fflush(stdin);
+		fgets(content, 250, stdin);
+
+		if(content[strlen(content)-1] == '\n'){
+        	content[strlen(content)-1] = '\0';
+		}
+		
+		if (strcmp(content,"$Quit") == 0 )
+        	break;
+      	else
+      	{
+        	fprintf(file, "%s\n", content);
+      	}
+    }
+
+    fclose(file);
+}
