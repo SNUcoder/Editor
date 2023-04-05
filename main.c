@@ -9,13 +9,15 @@ void edit();
 void read();
 
 int main(){
-	int in = prompt();
-	if (in == 1){
-		crfile();
-	} else if (in == 2) {
-		edit();
-	} else if (in == 3) {
-		read();
+	while (1){
+		int in = prompt();
+		if (in == 1){
+			crfile();
+		} else if (in == 2) {
+			edit();
+		} else if (in == 3) {
+			read();
+		}	
 	}
 }
 
@@ -85,7 +87,6 @@ void edit(){
 
 	scanf("%d", &fname);
 	gets(fname);
-	
 	file = fopen(fname, "a");
 
 	printf("******************** Edit ********************\n");
