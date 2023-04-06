@@ -1,2 +1,3 @@
 Hello world!
 This is the first file to be successfully edited by this app
+The editing feature works, thanks to smoil
