@@ -17,7 +17,13 @@ int main(){
 			edit();
 		} else if (in == 3) {
 			read();
-		}	
+		}	else
+		{
+			printf("\033[1;31m");
+			printf("Invalid operation\n");
+			printf("\033[1;0m");
+		}
+		
 	}
 }
 
@@ -30,7 +36,7 @@ int prompt(){
 	printf("**                  2) EDIT FILE                       **\n");
 	printf("**                  3) READ FILE                       **\n");
 	printf("**                                                     **\n");
-	printf("*********************************************************\n");
+	printf("******************** Ctrl+C to quit *********************\n");
 	printf("\033[1;36m");
 	printf("input>>> ");
 	printf("\033[1;0m");
@@ -56,23 +62,29 @@ void crfile(){
 }
 
 void read(){
-	char fname[31];
-	char content[200];
-
+	char fname[50];
+	int i = 0;
 	printf("\033[1;32m");
-	printf("What file would you like to read?\n");
+    printf("Enter the name of the file to read: ");
 	printf("\033[1;36m");
-	printf("input>>> ");
+	printf("\ninput>>> ");
 	printf("\033[1;0m");
-	scanf("%d", &content);
-	gets(content);
-	
-	file = fopen(fname, "r");
+    scanf("%s", fname);
 
-	while(fgets(content, 200, file)){
-		printf("%s", content);
-	}
-	fclose(file);
+    file = fopen(fname, "r");
+    if (file == NULL) {
+		printf("\033[1;31m");
+        printf("Unable to open file '%s'\n", fname);
+		printf("\033[1;0m");
+    }
+
+    char line[100];
+    while (fgets(line, sizeof(line), file)) {
+		++i;
+        printf("%d  %s", i, line);
+    }
+
+    fclose(file);
 }
 void edit(){
 	char fname[31];
